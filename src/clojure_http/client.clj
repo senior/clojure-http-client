@@ -14,6 +14,7 @@
                       "Connection" "close"})
 
 (def *connect-timeout* 0)
+(def *read-timeout* 0)
 
 (def *buffer-size* 1024)
 
@@ -128,6 +129,7 @@ by a server."
                                                   "GET")))]
     (.setRequestMethod connection method)
     (.setConnectTimeout connection *connect-timeout*)
+    (.setReadTimeout connection *read-timeout*)
     (.setInstanceFollowRedirects connection *follow-redirects*)
     
     (doseq [[header value] (conj default-headers (or headers {}))]
